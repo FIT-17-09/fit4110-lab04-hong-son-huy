@@ -1,6 +1,7 @@
 IMAGE_NAME ?= fit4110/iot-ingestion:lab04
 CONTAINER_NAME ?= fit4110-iot-lab04
 PORT ?= 8000
+ENV_FILE ?= .env
 
 install:
 	npm install
@@ -18,10 +19,10 @@ build:
 	docker build -t $(IMAGE_NAME) .
 
 run:
-	docker run --rm --name $(CONTAINER_NAME) -p $(PORT):8000 --env-file .env.example $(IMAGE_NAME)
+	docker run --rm --name $(CONTAINER_NAME) -p $(PORT):8000 --env-file $(ENV_FILE) $(IMAGE_NAME)
 
 run-detached:
-	docker run -d --rm --name $(CONTAINER_NAME) -p $(PORT):8000 --env-file .env.example $(IMAGE_NAME)
+	docker run -d --rm --name $(CONTAINER_NAME) -p $(PORT):8000 --env-file $(ENV_FILE) $(IMAGE_NAME)
 
 health:
 	curl http://localhost:$(PORT)/health

@@ -21,7 +21,21 @@ npm install
 
 ---
 
-## 3. Build Docker image
+## 3. Tạo file cấu hình runtime
+
+```bash
+cp .env.example .env
+```
+
+Trên PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+---
+
+## 4. Build Docker image
 
 ```bash
 docker build -t fit4110/iot-ingestion:lab04 .
@@ -29,13 +43,13 @@ docker build -t fit4110/iot-ingestion:lab04 .
 
 ---
 
-## 4. Run container
+## 5. Run container
 
 ```bash
 docker run --rm \
   --name fit4110-iot-lab04 \
   -p 8000:8000 \
-  --env-file .env.example \
+  --env-file .env \
   fit4110/iot-ingestion:lab04
 ```
 
@@ -57,7 +71,7 @@ Kết quả mong đợi:
 
 ---
 
-## 5. Chạy Newman test trên container
+## 6. Chạy Newman test trên container
 
 ```bash
 npm run test:local
@@ -72,7 +86,7 @@ reports/newman-lab04-local.html
 
 ---
 
-## 6. Dừng container
+## 7. Dừng container
 
 Nếu không dùng `--rm` hoặc container còn chạy:
 
@@ -82,7 +96,7 @@ docker stop fit4110-iot-lab04
 
 ---
 
-## 7. Lệnh nhanh
+## 8. Lệnh nhanh
 
 ```bash
 make build

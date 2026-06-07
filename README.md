@@ -176,10 +176,12 @@ docker build -t fit4110/iot-ingestion:lab04 .
 Run container:
 
 ```bash
+cp .env.example .env
+
 docker run --rm \
   --name fit4110-iot-lab04 \
   -p 8000:8000 \
-  --env-file .env.example \
+  --env-file .env \
   fit4110/iot-ingestion:lab04
 ```
 
